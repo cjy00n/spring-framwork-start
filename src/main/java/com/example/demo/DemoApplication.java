@@ -32,7 +32,7 @@ public class DemoApplication {
 
     private void execute() {
         // 등록
-		executeInsert();
+//		executeInsert();
 		// 전체 취득
 		executeSelect();
     }
