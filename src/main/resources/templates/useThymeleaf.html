@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http//www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Thymeleaf Sample</title>
+</head>
+<body>
+<h1 th:text="'Hello, world!'"></h1>
+<h2>안녕하세요, [[${name}]]님!</h2>
+<hr>
+<div th:with="a=10, b=20">
+    <p th:text="|${a} + ${b} = ${a+b}|"></p>
+    <p>[[${a} + ${b}]]</p>
+    <p th:text="|${a}는 1보다 크다. => ${a > 1 }|"></p>
+    <p th:text="|${a}는 ${b}보다 크다. => ${a > b }|"></p>
+    <p th:text="|${a}는 10보다 작거나 같다. => ${a <= 10 }|"></p>
+</div>
+<hr>
+<div>
+    <p th:text="${name} == '이순신' ? '이순신이다!' :'이순신이 아니다!'"></p>
+    <P th:if="${name}=='이순신'">
+        이순신이다!!!
+    </P>
+    <P th:unless="${name}=='홍길동'">홍길동이 아니다!!!
+    </P>
+    <th:block th:if="${name} == '이순신'">
+        <p>th:block 태그는 보이지 않아요</p>
+    </th:block>
+</div>
+<hr>
+<div th:switch ="${name}">
+    <p th:case="김철수" th:text="|${name}입니다!|"></p>
+    <p th:case="*" th:text="|${name}입니다!|"></p>
+</div>
+<hr>
+<div>
+    <p>.으로 접근 : <span th:text="|${member.id} - ${member.name}|"></span></p>
+    <p>[]으로 접근 : <span th:text="|${member['id']} - ${member['name']}|"></span></p>
+</div>
+<th:block th:object="${member}">
+    <p>
+        <span th:text="*{id}">ID</span>
+        <span th:text="*{name}">이름</span>
+    </p>
+    <p>
+        <span th:text="*{['id']}">ID</span>
+        <span th:text="*{['name']}">이름</span>
+    </p>
+</th:block>
+
+<div>
+    <span th:text="${directions[0]}"></span>
+    <span th:text="${directions[1]}"></span>
+    <span th:text="${directions[2]}"></span>
+    <span th:text="${directions[3]}"></span>
+</div>
+
+<div>
+    <p th:text="${memberMap.kim.name}"></p>
+    <p th:text="${memberMap.lee.name}"></p>
+    <p th:text="${memberMap['kim']['name']}"></p>
+    <p th:text="${memberMap['lee']['name']}"></p>
+</div>
+
+<div th:each="member, s: ${memberList}">
+    <p>[[${member.id}]] : [[${member.name}]]</p>
+    <p> index -> [[${s.index}]] , count -> [[${s.count}]], size -> [[${s.size}]], current -> [[${s.current}]], even -> [[${s.even}]],
+        odd -> [[${s.odd}]], first -> [[${s.first}]], last -> [[${s.last}]]
+    </p>
+</div>
+
+<div th:with="x=1000000, y=123456.789">
+    <p>
+        정수 형식 : <span th:text="${#numbers.formatInteger(x,3,'COMMA')}"></span>
+    </p>
+    <p>
+        부동소수점 형식 : <span th:text="${#numbers.formatDecimal(y,3,2,'POINT')}"></span>
+    </p>
+</div>
+<div th:with="today=${#dates.createNow()}">
+    <p> yyyy/mm/dd 형식 : <span th:text="${#dates.format(today, 'yyyy/MM/dd')}"></span></p>
+</div>
+
+<div th:with="str1='abcdefGHI'">
+    <p>대문자 변환 : <span th:text="${#strings.toUpperCase(str1)}"></span> </p>
+    <p>소문자 변환 : <span th:text="${#strings.toLowerCase(str1)}"></span> </p>
+    <p>빈 문자열 판별 : <span th:text="${#strings.isEmpty(str1)}"></span> </p>
+    <p>길이 : <span th:text="${#strings.length(str1)}"></span> </p>
+</div>
+
+<hr>
+<div id="one" th:insert="fragment :: one"></div>
+<div id="two" th:replace="fragment :: two"></div>
+<div id="three" th:insert="fragment :: three"></div>
+</body>
+</html>
