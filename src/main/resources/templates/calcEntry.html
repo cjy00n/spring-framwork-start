@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http//www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>입력 화면</title>
+</head>
+<body>
+<form method="post" th:action="@{/validate/calc}" th:object="${calcForm}">
+    <div>
+        <input th:field="*{leftNum}" type="text"/>
+        +
+        <input th:field="*{rightNum}" type="text"/>
+        <input type="submit" value="계산"/>
+    </div>
+    <ul th:if="${#fields.hasErrors('*')}">
+        <li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
+    </ul>
+</form>
+</body>
+</html>
