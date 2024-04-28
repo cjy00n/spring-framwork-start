@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.form.Form;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,14 +21,24 @@ public class RequestParamController {
         // 반환값으로 이름 돌려줌
         return "entry";
     }
+//
+//    /** 확인 화면을 표시 */
+//    @PostMapping("confirm")
+//    public String confirmView(Model model, @RequestParam String name, @RequestParam Integer age, @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) @RequestParam LocalDate birth) {
+//        // Model에 저장
+//        model.addAttribute("name", name);
+//        model.addAttribute("age", age);
+//        model.addAttribute("birth", birth);
+//
+//        return "confirm";
+//    }
 
+    /**
+     * 확인 화면을 표시 : from 클래스 용
+     */
     @PostMapping("confirm")
-    public String confirmView(Model model, @RequestParam String name, @RequestParam Integer age, @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) @RequestParam LocalDate birth) {
-        // Model에 저장
-        model.addAttribute("name", name);
-        model.addAttribute("age", age);
-        model.addAttribute("birth", birth);
-
-        return "confirm";
+    public String confirmView(Form f) {
+        return "confirm2";
     }
+
 }

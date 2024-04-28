@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http//www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>경로에 포함된 값과 클릭된 버튼 식별</title>
+</head>
+<body>
+<h3><a th:href="@{/path/function/1}">기능-1</a></h3>
+<h3><a th:href="@{/path/function/2}">기능-2</a></h3>
+<h3><a th:href="@{/path/function/3}">기능-3</a></h3>
+
+<form method="post" th:action="@{/path/send}">
+    <input name="a" type="submit" value="버튼a"/>
+    <input name="b" type="submit" value="버튼b"/>
+    <input name="c" type="submit" value="버튼c"/>
+</form>
+</body>
+</html>
